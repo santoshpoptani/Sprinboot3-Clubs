@@ -1,0 +1,9 @@
+<!-- <div class="position-relative">
+                         <img class="img-fluid abc rounded-3 mb-3" th:src="${club.photoUrl}" alt="..." />
+                         <a th:text = ${club.title} class="h3 fw-bolder text-decoration-none link-dark stretched-link" href="#!">Project name</a>
+
+                     </div>
+                     <div class="mb-4 mt-3">
+                         <a class="btn btn-primary" th:href="@{/clubs/{clubId}(clubId=${club.id})}">view</a>
+                         <a class="btn btn-primary" th:href="@{/clubs/{clubId}/edit(clubId=${club.id})}">Edit</a>
+                     </div>-->
