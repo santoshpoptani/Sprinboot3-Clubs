@@ -12,7 +12,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
-@EnableWebSecurity(debug = true)
+@EnableWebSecurity
 public class SecurityConfig {
 
     private  CustomUserDetailsServices customUserDetailsServices;
@@ -29,10 +29,14 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
-                .authorizeHttpRequests()
-                .requestMatchers("/login", "/register", "/clubs", "/css/**", "/js/**")
-                .permitAll()
-                .and()
+                .authorizeHttpRequests((authorize) ->
+                        authorize.requestMatchers("/register/**").permitAll()
+                                .requestMatchers("/clubs").permitAll()
+                                .requestMatchers("/css/**").permitAll()
+                                .requestMatchers("/js/**").permitAll()
+                                .anyRequest().authenticated()
+                )
+
                 .formLogin(form -> form
                         .loginPage("/login")
                         .defaultSuccessUrl("/clubs")
@@ -45,7 +49,6 @@ public class SecurityConfig {
                 );
         return http.build();
     }
-
 
     public void configure(AuthenticationManagerBuilder builder) throws Exception {
         builder.userDetailsService(customUserDetailsServices).passwordEncoder(passwordEncoder());

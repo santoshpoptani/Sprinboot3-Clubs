@@ -1,6 +1,7 @@
 package com.example.springboot.dto;
 
 
+import com.example.springboot.models.UserEntity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -28,6 +29,8 @@ public class ClubDto {
 
     @NotEmpty(message = "Content shoud not be empty")
     private String content;
+
+    private UserEntity createdBy;
 
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
